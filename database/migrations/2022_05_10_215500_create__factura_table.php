@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id()->autoIncrement()->unique();
             $table->decimal('precioTotal');
             $table->date('fechaCompra');
-            $table->foreign('IdLibro')->references('id')->on('libro');
-            $table->foreign('IdUsuario')->references('id')->on('users');
+
+            $table->bigInteger('libro_id')->references('id')->on('libro')->onDelete('cascade')->nullable();
+            $table->bigInteger('usuario_id')->references('id')->on('usuario')->onDelete('cascade')->nullable();
+
             $table->timestamps();
         });
     }

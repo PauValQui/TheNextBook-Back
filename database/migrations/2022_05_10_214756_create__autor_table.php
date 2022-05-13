@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('_autor', function (Blueprint $table) {
             $table->id()->autoIncrement()->unique();
             $table->string('nombre',200);
-            $table->foreign('IdLibro')->references('id')->on('Libro');
+            $table->bigInteger('libro_id')->references('id')->on('libro')->onDelete('cascade')->nullable();
+
             $table->timestamps();
         });
     }

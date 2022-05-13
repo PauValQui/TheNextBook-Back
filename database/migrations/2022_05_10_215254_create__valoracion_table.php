@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('titulo');
             $table->integer('puntuacion');
             $table->text('comentario');
-            $table->foreign('IdLibro')->references('id')->on('Libro');
-            $table->foreign('IdUsuario')->references('id')->on('users');
+
+            $table->bigInteger('libro_id')->references('id')->on('libro')->onDelete('cascade')->nullable();
+            $table->bigInteger('usuario_id')->references('id')->on('usuario')->onDelete('cascade')->nullable();
             $table->timestamps();
         });
     }

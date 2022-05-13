@@ -14,9 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('_categoria', function (Blueprint $table) {
+            $table->integer('id')->autoIncrement()->unique();
             $table->string('tipo')->unique();
             $table->string('descripcion');
-            $table->foreign('IdLibro')->references('id')->on('Libro');
+            $table->bigInteger('libro_id')->references('id')->on('libro')->onDelete('cascade')->nullable();
+
             $table->timestamps();
         });
     }

@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('titulo',100);
             $table->text('sinopsis');
             $table->decimal('precio',$precision=8, $scale=2);
-            $table->foreign('categoria')->references('tipo')->on('categoria');
-            $table->foreign('autor')->references('id')->on('autor');
-            $table->foreign('valoracion')->references('id')->on('valoracion');
+            $table->bigInteger('categoria_id')->references('id')->on('categoria')->onDelete('cascade')->nullable();
+            $table->bigInteger('autor_id')->references('id')->on('autor')->onDelete('cascade')->nullable();
+            $table->bigInteger('valoracion_id')->references('id')->on('valoracion')->onDelete('cascade')->nullable();
+
             $table->timestamps();
         });
     }
